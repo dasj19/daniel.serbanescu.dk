@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        text {
+            font-family: ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 64px; /* longest line is 20 chars ≈ 770 of 800 units */
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #000;
+        }
+        .at  { fill: #d32f2f; } /* red */
+        .dot { fill: #1565c0; } /* blue */
+        .txt { fill: #ffffff; } /* white */
+
+        /* 3 frames x 1.5s = 4.5s loop; frames overlap during the fade so they blend into each other */
+        .frame { opacity: 0; animation: fade 4.5s infinite; }
+        /* delays start each frame 0.3s into its fade-in, so frame 1 is fully visible on load */
+        #frame1 { animation-delay: -0.3s; }
+        #frame2 { animation-delay: -3.3s; } /* fades in at 1.2–1.5s */
+        #frame3 { animation-delay: -1.8s; } /* fades in at 2.7–3s */
+
+        @keyframes fade {
+            0%      { opacity: 0; }
+            6.666%  { opacity: 1; } /* 0.3s fade in */
+            33.333% { opacity: 1; }
+            40%     { opacity: 0; } /* 0.3s fade out, while the next frame fades in */
+            100%    { opacity: 0; }
+        }
+    </style>
+
+    <g id="frame1" class="frame">
+        <text x="400" y="150"><tspan class="txt">daniel</tspan><tspan class="dot">.</tspan><tspan class="txt">serbanescu</tspan><tspan class="dot">.</tspan><tspan class="txt">dk</tspan></text>
+    </g>
+    <g id="frame2" class="frame">
+        <text x="400" y="150"><tspan class="txt">daniel</tspan><tspan class="at">@</tspan><tspan class="txt">serbanescu</tspan><tspan class="dot">.</tspan><tspan class="txt">dk</tspan></text>
+    </g>
+    <g id="frame3" class="frame">
+        <text x="400" y="150"><tspan class="txt">Daniel Șerbănescu</tspan><tspan class="dot">...</tspan></text>
+    </g>
+</svg>
