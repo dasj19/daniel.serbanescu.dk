@@ -1,0 +1,11 @@
+/* TEAM */
+    Software Developer: Daniel Șerbănescu
+    Site: https://daniel.serbanescu.dk/
+    GitHub: https://github.com/dasj19
+    LinkedIn: https://www.linkedin.com/in/dasj19
+    From: Roskilde, Denmark
+
+/* SITE */
+    Last update: 2026/10/29
+    Language: English
+    Standards: HTML5, SVG
