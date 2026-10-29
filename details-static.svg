@@ -1,0 +1,17 @@
+<svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+    <!-- static version of details.svg for prefers-reduced-motion: only the email frame -->
+    <style>
+        text {
+            font-family: ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 64px; /* longest line is 20 chars ≈ 770 of 800 units */
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #000;
+        }
+        .at  { fill: #d32f2f; } /* red */
+        .dot { fill: #1565c0; } /* blue */
+        .txt { fill: #ffffff; } /* white */
+    </style>
+
+    <text x="400" y="150"><tspan class="txt">daniel</tspan><tspan class="at">@</tspan><tspan class="txt">serbanescu</tspan><tspan class="dot">.</tspan><tspan class="txt">dk</tspan></text>
+</svg>
