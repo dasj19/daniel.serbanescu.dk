@@ -1,6 +1,9 @@
 {
     "name": "Daniel Șerbănescu",
     "short_name": "Daniel",
+    "description": "Personal page of Daniel Șerbănescu.",
+    "id": "/#person",
+    "start_url": "/",
     "icons": [
         {
             "src": "/favicons/android-chrome-192x192.png",
