@@ -3,6 +3,7 @@
     Site: https://daniel.serbanescu.dk/
     GitHub: https://github.com/dasj19
     LinkedIn: https://www.linkedin.com/in/dasj19
+    Sifa: https://sifa.id/p/daniel.serbanescu.dk
     From: Roskilde, Denmark
 
 /* SITE */
