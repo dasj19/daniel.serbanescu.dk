@@ -34,6 +34,7 @@ p {
 }
 .links {
     display:flex;
+    font-style:normal;
     justify-content:center;
     gap:1rem;
     padding-bottom:1rem;
@@ -53,6 +54,8 @@ p {
 }
 footer {
     padding:1rem;
-    font-size:0.875rem;
     text-align:center;
+}
+small {
+    font-size:0.875rem;
 }
