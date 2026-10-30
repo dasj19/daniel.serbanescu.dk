@@ -53,31 +53,24 @@
                 ]
             }
         </script>
-        <style>
-            html, body {
-                height:100%; margin:0;
-            }
-            body {
-                display:grid;
-                place-items:center;
-                min-height:100vh;
-                background: #111a3e url("background.svg") center / cover no-repeat fixed;
-            }
-            picture {
-                display:block;
-                width:100%;
-            }
-            .slideshow {
-                display:block;
-                width:100%;
-                height:auto;
-            }
-        </style>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <picture>
-            <source media="(prefers-reduced-motion: reduce)" srcset="details-static.svg" />
-            <img class="slideshow" src="details.svg" alt="Contact Daniel Șerbănescu" />
-        </picture>
+        <main>
+            <picture>
+                <source media="(prefers-reduced-motion: reduce)" srcset="img/details-static.svg" />
+                <img class="slideshow" src="img/details.svg" alt="Contact Daniel Șerbănescu" />
+            </picture>
+            <h1>Personal page of Daniel Șerbănescu.</h1>
+            <p>Software Developer in Roskilde, Denmark</p>
+            <nav class="links" aria-label="Profiles">
+                <a href="https://github.com/dasj19" rel="me">
+                    <img src="img/github.svg" alt="GitHub" />
+                </a>
+                <a href="https://www.linkedin.com/in/dasj19" rel="me">
+                    <img src="img/linkedin.svg" alt="LinkedIn" />
+                </a>
+            </nav>
+        </main>
     </body>
 </html>

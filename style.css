@@ -1,0 +1,52 @@
+html, body {
+    height:100%; margin:0;
+}
+body {
+    display:grid;
+    place-items:center;
+    min-height:100vh;
+    background: #111a3e url("img/background.svg") center / cover no-repeat fixed;
+}
+picture {
+    display:block;
+    width:100%;
+}
+.slideshow {
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:60vh;
+}
+main {
+    width:100%;
+    text-align:center;
+    color:#ffffff;
+    font-family:ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+h1 {
+    margin:0;
+    font-size:clamp(1.5rem, 5vw, 2.5rem);
+    font-weight:normal;
+}
+p {
+    margin:0.5rem 0 1rem;
+}
+.links {
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    padding-bottom:1rem;
+}
+.links a {
+    display:block;
+    padding:0.5rem;
+    color:#ffffff;
+}
+.links a:hover {
+    opacity:0.7;
+}
+.links img {
+    display:block;
+    width:32px;
+    height:32px;
+}
