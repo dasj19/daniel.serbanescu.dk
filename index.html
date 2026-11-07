@@ -21,8 +21,20 @@
                 "@id": "https://daniel.serbanescu.dk/#person",
                 "name": "Daniel Șerbănescu",
                 "alternateName": "Daniel Serbanescu",
-                "givenName": "Daniel",
-                "familyName": "Șerbănescu",
+                "givenName": {
+                    "@type": "PronounceableText",
+                    "textValue": "Daniel",
+                    "phoneticText": "/daniˈel/",
+                    "speechToTextMarkup": "IPA",
+                    "inLanguage": "ro"
+                },
+                "familyName": {
+                    "@type": "PronounceableText",
+                    "textValue": "Șerbănescu",
+                    "phoneticText": "/ʃerbəˈnesku/",
+                    "speechToTextMarkup": "IPA",
+                    "inLanguage": "ro"
+                },
                 "nationality": "Romania",
                 "gender": "Male",
                 "description": "Technology Enthusiast",
@@ -55,6 +67,7 @@
             }
         </script>
         <link rel="stylesheet" href="style.css">
+        <script src="script/audio.js" defer></script>
     </head>
     <body>
         <main>
@@ -64,6 +77,42 @@
                     <img class="slideshow" src="img/details.svg" alt="Contact Daniel Șerbănescu">
                 </picture>
                 <h1>Personal page of Daniel Șerbănescu.</h1>
+                <dl class="names">
+                    <div>
+                        <dt lang="ro">Daniel</dt>
+                        <dd class="ipa" lang="ro-fonipa" title="International Phonetic Alphabet (Romanian)">/daniˈel/</dd>
+                        <dd class="actions">
+                            <button class="play" type="button" data-src="sound/Daniel-ro.mp3" title="Play Romanian pronunciation">
+                                <img src="img/flag-ro.svg" alt="Play pronunciation of Daniel in Romanian">
+                            </button>
+                            <button class="play" type="button" data-src="sound/Daniel-en.mp3" title="Play English pronunciation">
+                                <img src="img/flag-us.svg" alt="Play pronunciation of Daniel in English">
+                            </button>
+                            <a href="https://en.wiktionary.org/wiki/Daniel" title="Daniel on Wiktionary">
+                                <img src="img/wikitionary.svg" alt="Daniel on Wiktionary">
+                            </a>
+                        </dd>
+                        <dd class="about">Meaning: God is my judge.</dd>
+                        <dd class="about">Origin: Hebrew.</dd>
+                    </div>
+                    <div>
+                        <dt lang="ro">Șerbănescu</dt>
+                        <dd class="ipa" lang="ro-fonipa" title="International Phonetic Alphabet (Romanian)">/ʃerbəˈnesku/</dd>
+                        <dd class="actions">
+                            <button class="play" type="button" data-src="sound/%C8%98erb%C4%83nescu.mp3" title="Play Romanian pronunciation">
+                                <img src="img/flag-ro.svg" alt="Play pronunciation of Șerbănescu in Romanian">
+                            </button>
+                            <button class="play" type="button" data-src="sound/%C8%98erb%C4%83nescu-en.mp3" title="English pronunciation not available yet" disabled>
+                                <img src="img/flag-us.svg" alt="Pronunciation of Șerbănescu in English (not available yet)">
+                            </button>
+                            <a href="https://en.wiktionary.org/wiki/%C8%98erb%C4%83nescu" title="Șerbănescu on Wiktionary">
+                                <img src="img/wikitionary.svg" alt="Șerbănescu on Wiktionary">
+                            </a>
+                        </dd>
+                        <dd class="about">Meaning: Descendant of a Șerban.</dd>
+                        <dd class="about">Origin: From slavic "serb" to Latin "servus" or Romanian "șerb".</dd>
+                    </div>
+                </dl>
                 <p>Software Developer with an interest for Linux and Open Source.</p>
             </header>
             <address class="links">
