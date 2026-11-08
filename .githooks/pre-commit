@@ -1,0 +1,45 @@
+#!/bin/sh
+# Bump the "last modified" dates whenever site files are committed:
+#   index.html   JSON-LD "dateModified"  (ISO 8601 with offset)
+#   sitemap.xml  <lastmod>                (YYYY-MM-DD)
+#   humans.txt   Last update:             (YYYY/MM/DD)
+#
+# Enable once per clone with: git config core.hooksPath .githooks
+
+set -eu
+
+targets="index.html sitemap.xml humans.txt"
+
+# Files that are not part of the published site and should not bump the date.
+not_site='^(\.githooks/|\.github/|\.gitignore$|README|LICENSE)'
+
+site_changes=$(git diff --cached --name-only --diff-filter=ACMRD | grep -Ev "$not_site" || true)
+[ -n "$site_changes" ] || exit 0
+
+# The updated files get staged in full, so refuse to sweep up unstaged edits.
+for file in $targets; do
+    if ! git diff --quiet -- "$file"; then
+        echo "pre-commit: $file has unstaged changes; stage or stash them first." >&2
+        exit 1
+    fi
+done
+
+now=$(date +%Y-%m-%dT%H:%M:%S%z | sed 's/\([0-9][0-9]\)$/:\1/')
+day=$(date +%Y-%m-%d)
+slash_day=$(date +%Y/%m/%d)
+
+replace() {
+    file=$1
+    expression=$2
+    tmp=$(mktemp)
+    sed "$expression" "$file" > "$tmp"
+    if ! cmp -s "$file" "$tmp"; then
+        cat "$tmp" > "$file"
+        git add -- "$file"
+    fi
+    rm -f "$tmp"
+}
+
+replace index.html  "s|\"dateModified\": \"[^\"]*\"|\"dateModified\": \"$now\"|"
+replace sitemap.xml "s|<lastmod>[^<]*</lastmod>|<lastmod>$day</lastmod>|"
+replace humans.txt  "s|Last update: [0-9/]*|Last update: $slash_day|"
