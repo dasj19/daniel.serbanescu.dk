@@ -102,6 +102,21 @@ p {
     background:url("img/speaker.svg") center / contain no-repeat;
     pointer-events:none;
 }
+.play.playing img {
+    outline:2px solid #aaaaff;
+    outline-offset:2px;
+}
+.play.playing::after {
+    animation:pulse 0.6s ease-in-out infinite alternate;
+}
+@keyframes pulse {
+    to { transform:scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .play.playing::after {
+        animation:none;
+    }
+}
 .links {
     display:flex;
     font-style:normal;
