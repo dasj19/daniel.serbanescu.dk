@@ -10,7 +10,8 @@ body {
     grid-template-rows:1fr auto;
     place-items:center;
     min-height:100vh;
-    background: #111a3e url("img/background.svg") center / cover no-repeat fixed;
+    min-height:100dvh;
+    background: #111a3e url("img/background.svg") center / cover no-repeat;
     color:#ffffff;
     font-family:ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 }
