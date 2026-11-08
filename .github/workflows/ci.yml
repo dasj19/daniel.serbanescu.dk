@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
-      - run: npx --yes html-validate@9 index.html
+      - run: npx --yes html-validate@11 index.html
 
   links:
     name: Check links
