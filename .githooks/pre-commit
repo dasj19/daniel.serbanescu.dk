@@ -11,7 +11,7 @@ set -eu
 targets="index.html sitemap.xml humans.txt"
 
 # Files that are not part of the published site and should not bump the date.
-not_site='^(\.githooks/|\.github/|\.gitignore$|\.htmlvalidate\.json$|lighthouserc\.json$|README|LICENSE)'
+not_site='^(\.githooks/|\.github/|\.vscode/|\.gitignore$|\.htmlvalidate\.json$|lighthouserc\.json$|README|LICENSE)'
 
 site_changes=$(git diff --cached --name-only --diff-filter=ACMRD | grep -Ev "$not_site" || true)
 [ -n "$site_changes" ] || exit 0
