@@ -77,7 +77,8 @@ p {
     cursor:pointer;
 }
 .actions a:focus-visible,
-.play:focus-visible {
+.play:focus-visible,
+.links a:focus-visible {
     outline:2px solid #ffffff;
     outline-offset:2px;
 }
