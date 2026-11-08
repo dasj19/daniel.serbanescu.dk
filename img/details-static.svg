@@ -8,8 +8,8 @@
             dominant-baseline: middle;
             fill: #000;
         }
-        .at  { fill: #d32f2f; } /* red */
-        .dot { fill: #1565c0; } /* blue */
+        .at  { fill: #ff8a80; } /* red */
+        .dot { fill: #64b5f6; } /* blue */
         .txt { fill: #ffffff; } /* white */
     </style>
 

@@ -7,8 +7,8 @@
             dominant-baseline: middle;
             fill: #000;
         }
-        .at  { fill: #d32f2f; } /* red */
-        .dot { fill: #1565c0; } /* blue */
+        .at  { fill: #ff8a80; } /* red */
+        .dot { fill: #64b5f6; } /* blue */
         .txt { fill: #ffffff; } /* white */
 
         /* 3 frames x 1.5s = 4.5s loop; frames overlap during the fade so they blend into each other */
