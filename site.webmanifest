@@ -2,7 +2,7 @@
     "name": "Daniel Șerbănescu",
     "short_name": "Daniel",
     "description": "Personal page of Daniel Șerbănescu.",
-    "id": "/#person",
+    "id": "/",
     "start_url": "/",
     "icons": [
         {
@@ -16,7 +16,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#aaaaff",
-    "background_color": "#aaaaff",
-    "display": "standalone"
+    "theme_color": "#111a3e",
+    "background_color": "#111a3e",
+    "display": "browser"
 }
