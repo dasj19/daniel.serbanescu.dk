@@ -1,146 +1,178 @@
-html, body {
-    height:100%; margin:0;
-}
-img {
-    max-width:100%;
-    height:auto;
-}
+html,
 body {
-    display:grid;
-    grid-template-rows:1fr auto;
-    place-items:center;
-    min-height:100vh;
-    min-height:100dvh;
+    height: 100%;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    place-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
     background: #111a3e url("img/background.svg") center / cover no-repeat;
-    color:#ffffff;
-    font-family:ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    color: #fff;
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
+
 picture {
-    display:block;
-    width:100%;
+    display: block;
+    width: 100%;
 }
+
 .slideshow {
-    display:block;
-    width:100%;
-    max-height:60vh;
+    display: block;
+    width: 100%;
+    max-height: 60vh;
 }
+
 main {
-    width:100%;
-    text-align:center;
+    width: 100%;
+    text-align: center;
 }
+
 h1 {
-    margin:0;
-    font-size:clamp(1.5rem, 5vw, 2.5rem);
-    font-weight:normal;
+    margin: 0;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: normal;
 }
+
 p {
-    margin:0.5rem 0 1rem;
+    margin: 0.5rem 0 1rem;
 }
+
 .names {
-    margin:0.5rem 0 1rem;
-    padding:0 1rem;
+    margin: 0.5rem 0 1rem;
+    padding: 0 1rem;
 }
+
 .names > div {
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap:0.25rem 0.5rem;
-    margin-bottom:0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem 0.5rem;
+    margin-bottom: 0.75rem;
 }
+
 .names dd {
-    margin:0;
-    color:#aaaaaa;
+    margin: 0;
+    color: #aaa;
 }
+
 .names .about {
-    flex-basis:100%;
-    font-size:0.875rem;
+    flex-basis: 100%;
+    font-size: 0.875rem;
 }
+
 .actions {
-    display:flex;
-    align-items:center;
-    gap:0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
+
 .actions a,
 .play {
-    display:block;
+    display: block;
 }
+
 .actions a:hover,
 .play:hover {
-    opacity:0.7;
+    opacity: 0.7;
 }
+
 .play {
-    position:relative;
-    padding:0;
-    border:0;
-    background:none;
-    cursor:pointer;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
 }
+
 .actions a:focus-visible,
 .play:focus-visible,
 .links a:focus-visible {
-    outline:2px solid #ffffff;
-    outline-offset:2px;
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }
+
 .actions img {
-    display:block;
+    display: block;
 }
+
 .play img {
-    width:auto;
-    height:18px;
+    width: auto;
+    height: 18px;
 }
+
 .play:disabled {
-    opacity:0.35;
-    filter:grayscale(1);
-    cursor:not-allowed;
+    opacity: 0.35;
+    filter: grayscale(1);
+    cursor: not-allowed;
 }
+
 .play::after {
-    content:"";
-    position:absolute;
-    right:-5px;
-    bottom:-5px;
-    width:12px;
-    height:12px;
-    background:url("img/speaker.svg") center / contain no-repeat;
-    pointer-events:none;
+    content: "";
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    width: 12px;
+    height: 12px;
+    background: url("img/speaker.svg") center / contain no-repeat;
+    pointer-events: none;
 }
+
 .play.playing img {
-    outline:2px solid #aaaaff;
-    outline-offset:2px;
+    outline: 2px solid #aaf;
+    outline-offset: 2px;
 }
+
 .play.playing::after {
-    animation:pulse 0.6s ease-in-out infinite alternate;
+    animation: pulse 0.6s ease-in-out infinite alternate;
 }
+
 @keyframes pulse {
-    to { transform:scale(1.4); }
+    to { transform: scale(1.4); }
 }
+
 @media (prefers-reduced-motion: reduce) {
     .play.playing::after {
-        animation:none;
+        animation: none;
     }
 }
+
 .links {
-    display:flex;
-    font-style:normal;
-    justify-content:center;
-    gap:1rem;
-    padding-bottom:1rem;
+    display: flex;
+    font-style: normal;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
 }
+
 .links a {
-    display:block;
-    padding:0.5rem;
-    color:#ffffff;
+    display: block;
+    padding: 0.5rem;
+    color: #fff;
 }
+
 .links a:hover {
-    opacity:0.7;
+    opacity: 0.7;
 }
+
 .links img {
-    display:block;
+    display: block;
 }
+
 footer {
-    padding:1rem;
-    text-align:center;
+    padding: 1rem;
+    text-align: center;
 }
+
 small {
-    font-size:0.875rem;
+    font-size: 0.875rem;
 }

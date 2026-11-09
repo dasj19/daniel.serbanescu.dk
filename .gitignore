@@ -1,0 +1,3 @@
+# Local tooling output
+node_modules/
+.lighthouseci/
