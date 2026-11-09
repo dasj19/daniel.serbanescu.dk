@@ -13,7 +13,7 @@ A static site with no build step: plain HTML, CSS, a little JavaScript, SVG imag
 | `script/audio.js` | Plays pronunciations in place; without JavaScript the links open the MP3s |
 | `img/` | Images; `og-image.png` is rendered from `og-image.svg` |
 | `sound/` | Pronunciation recordings |
-| `favicons/`, `favicon.ico`, `site.webmanifest` | Icons and web app manifest |
+| `favicons/`, `favicon.ico`, `site.webmanifest` | Icons and web app manifest; `maskable-*.png` are rendered from `maskable.svg` |
 | `robots.txt`, `sitemap.xml`, `humans.txt` | Crawler and author metadata |
 
 ## Development
@@ -65,6 +65,16 @@ After editing `img/og-image.svg`, re-render the PNG (needs the DejaVu Sans Mono 
 
 ```sh
 inkscape img/og-image.svg --export-type=png --export-filename=img/og-image.png
+```
+
+### Maskable icons
+
+`favicons/maskable.svg` places `favicon.svg` inside the safe zone of a full-bleed background. After changing either, re-render:
+
+```sh
+for size in 192 512; do
+    inkscape favicons/maskable.svg --export-type=png --export-width=$size --export-filename=favicons/maskable-${size}x${size}.png
+done
 ```
 
 ## Checks
