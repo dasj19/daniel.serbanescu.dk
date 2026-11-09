@@ -23,6 +23,53 @@ jobs:
           node-version: 24
       - run: npx --yes html-validate@11 index.html
 
+  css:
+    name: Lint CSS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      # Installed locally (not via npx) so stylelint can resolve the shared config.
+      - run: npm install --no-save --no-package-lock stylelint@16 stylelint-config-standard@39
+      - run: npx stylelint style.css
+
+  json:
+    name: Check JSON
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Web app manifest parses
+        run: jq empty site.webmanifest
+      - name: JSON-LD in index.html parses
+        shell: python3 {0}
+        run: |
+          import json, re, sys
+          html = open("index.html", encoding="utf-8").read()
+          blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
+          if not blocks:
+              sys.exit("No JSON-LD block found in index.html")
+          for block in blocks:
+              json.loads(block)
+          print(f"{len(blocks)} JSON-LD block(s) OK")
+
+  og-image:
+    name: Social preview image is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      # Fails when og-image.svg was changed in a commit that og-image.png has not caught up with.
+      - run: |
+          svg=$(git log -1 --format=%H -- img/og-image.svg)
+          png=$(git log -1 --format=%H -- img/og-image.png)
+          if ! git merge-base --is-ancestor "$svg" "$png"; then
+            echo "::error file=img/og-image.png::img/og-image.svg changed in $svg after the PNG was last rendered. Re-render it (see README)."
+            exit 1
+          fi
+
   links:
     name: Check links
     runs-on: ubuntu-latest

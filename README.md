@@ -54,7 +54,7 @@ When a commit includes site files, the hook sets the current date in three place
 | `sitemap.xml` | `<lastmod>` | `2026-11-08` |
 | `humans.txt` | `Last update:` | `2026/11/08` |
 
-- Commits that only touch repo files (`.githooks/`, `.github/`, `.vscode/`, `.editorconfig`, `.gitignore`, `.htmlvalidate.json`, `lighthouserc.json`, `README*`, `LICENSE*`) leave the dates alone.
+- Commits that only touch repo files (`.githooks/`, `.github/`, `.vscode/`, `.editorconfig`, `.gitignore`, `.htmlvalidate.json`, `.stylelintrc.json`, `lighthouserc.json`, `README*`, `LICENSE*`) leave the dates alone.
 - If `index.html`, `sitemap.xml` or `humans.txt` has changes that are not staged, the commit is stopped, because the hook stages those files in full. Stage or stash the changes and commit again.
 - To commit without running the hook, use `git commit --no-verify`.
 - The hook is a POSIX `sh` script and works on Linux and macOS.
@@ -66,6 +66,8 @@ After editing `img/og-image.svg`, re-render the PNG (needs the DejaVu Sans Mono 
 ```sh
 inkscape img/og-image.svg --export-type=png --export-filename=img/og-image.png
 ```
+
+CI fails if `og-image.svg` has a newer commit than `og-image.png`.
 
 ### Maskable icons
 
@@ -82,6 +84,9 @@ done
 GitHub Actions runs on every push, on pull requests and weekly:
 
 - HTML validation with html-validate
+- CSS linting with stylelint (`stylelint-config-standard`, see `.stylelintrc.json`)
+- JSON checks: the web app manifest and the JSON-LD in `index.html` must parse
+- the social preview PNG must not be older than its SVG source
 - link checking with lychee
 - Lighthouse scores (accessibility, best practices and SEO must pass)
 
