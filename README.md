@@ -10,7 +10,7 @@ A static site with no build step: plain HTML, CSS, a little JavaScript, SVG imag
 |---|---|
 | `index.html` | The page, including JSON-LD and social preview tags |
 | `style.css` | Styles |
-| `script/audio.js` | Pronunciation playback |
+| `script/audio.js` | Plays pronunciations in place; without JavaScript the links open the MP3s |
 | `img/` | Images; `og-image.png` is rendered from `og-image.svg` |
 | `sound/` | Pronunciation recordings |
 | `favicons/`, `favicon.ico`, `site.webmanifest` | Icons and web app manifest |
