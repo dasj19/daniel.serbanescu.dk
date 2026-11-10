@@ -88,6 +88,7 @@ done
 GitHub Actions runs on every push, on pull requests and weekly:
 
 - HTML validation with html-validate
+- shell script linting of the git hooks with ShellCheck
 - CSS linting with stylelint (`stylelint-config-standard`, see `.stylelintrc.json`)
 - JSON checks: the web app manifest and the JSON-LD in `index.html` must parse
 - the social preview PNG must not be older than its SVG source

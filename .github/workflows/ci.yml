@@ -35,6 +35,14 @@ jobs:
       - run: npm install --no-save --no-package-lock stylelint@16 stylelint-config-standard@39
       - run: npx stylelint style.css
 
+  shell:
+    name: Lint shell scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      # ShellCheck is preinstalled on the GitHub-hosted Ubuntu runners.
+      - run: shellcheck --version && shellcheck .githooks/pre-commit
+
   json:
     name: Check JSON
     runs-on: ubuntu-latest
