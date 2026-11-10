@@ -17,8 +17,8 @@ jobs:
     name: Validate HTML
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       - run: npx --yes html-validate@11 index.html
@@ -27,8 +27,8 @@ jobs:
     name: Lint CSS
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       # Installed locally (not via npx) so stylelint can resolve the shared config.
@@ -39,7 +39,7 @@ jobs:
     name: Lint shell scripts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       # ShellCheck is preinstalled on the GitHub-hosted Ubuntu runners.
       - run: shellcheck --version && shellcheck .githooks/pre-commit
 
@@ -47,7 +47,7 @@ jobs:
     name: Check JSON
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - name: Web app manifest parses
         run: jq empty site.webmanifest
       - name: JSON-LD in index.html parses
@@ -66,7 +66,7 @@ jobs:
     name: Social preview image is up to date
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       # Fails when og-image.svg was changed in a commit that og-image.png has not caught up with.
@@ -82,7 +82,7 @@ jobs:
     name: Check links
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: lycheeverse/lychee-action@v2
         with:
           # LinkedIn answers bots with HTTP 999, so it is skipped.
@@ -98,7 +98,7 @@ jobs:
     name: Lighthouse
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: ./lighthouserc.json
