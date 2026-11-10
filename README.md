@@ -61,11 +61,15 @@ When a commit includes site files, the hook sets the current date in three place
 
 ### Social preview image
 
-After editing `img/og-image.svg`, re-render the PNG (needs the DejaVu Sans Mono font):
+After editing `img/og-image.svg`, re-render the PNG (needs the DejaVu Sans Mono font) and shrink it with pngquant and oxipng:
 
 ```sh
 inkscape img/og-image.svg --export-type=png --export-filename=img/og-image.png
+pngquant --quality=90-100 --speed 1 --strip --force --output img/og-image.png img/og-image.png
+oxipng -o max --strip safe --alpha img/og-image.png
 ```
+
+pngquant reduces the image to a 256-colour palette, which is visually identical here and cuts the file to about a third.
 
 CI fails if `og-image.svg` has a newer commit than `og-image.png`.
 
