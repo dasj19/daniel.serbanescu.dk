@@ -94,6 +94,8 @@ GitHub Actions runs on every push, on pull requests and weekly:
 
 The site is served by Caddy as static files.
 
+Pushing a `v*` tag creates a GitHub release. Its "Source code" archives (and `git archive`) contain only the files the web server needs, plus `LICENSE` and `LICENSE-CONTENT`. Dotfiles, documentation, tooling config and source SVGs are excluded via `export-ignore` in [.gitattributes](.gitattributes). Add any new non-served file there.
+
 ## License
 
 - **Code** (HTML markup, CSS, JavaScript, configuration and scripts) is licensed under the GNU General Public License v3.0 or later. See [LICENSE](LICENSE).
