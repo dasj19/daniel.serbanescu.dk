@@ -19,7 +19,6 @@ for tool in gh npm; do
     fi
 done
 
-workflows=.github/workflows/*.yml
 outdated=0
 
 # Major version of a tag such as v7, v7.0.1 or 12.6.2.
@@ -40,8 +39,14 @@ report() {
     printf '%-36s used %-6s latest %-8s %s\n' "${name}" "${used}" "${latest}" "${status}"
 }
 
+# The loops split on words rather than lines (SC2013). That is safe because
+# each ref, such as actions/checkout@v7 or stylelint@18, has no spaces or
+# glob characters, and a for loop (unlike a piped while loop) can set
+# ${outdated} in this shell.
+
 echo "GitHub Actions"
-for ref in $(grep -ohE 'uses: +[^ @]+@[^ ]+' ${workflows} | sed -E 's/^uses: +//' | sort -u); do
+# shellcheck disable=SC2013
+for ref in $(grep -ohE 'uses: +[^ @]+@[^ ]+' .github/workflows/*.yml | sed -E 's/^uses: +//' | sort -u); do
     repo=${ref%@*}
     used=${ref#*@}
     latest=$(gh api "repos/${repo}/releases/latest" -q .tag_name 2>/dev/null || true)
@@ -50,7 +55,8 @@ done
 
 echo
 echo "npm packages"
-for ref in $(grep -hE 'npm (install|i) |npx ' ${workflows} \
+# shellcheck disable=SC2013
+for ref in $(grep -hE 'npm (install|i) |npx ' .github/workflows/*.yml \
         | grep -oE '(@[a-z0-9._-]+/)?[a-z0-9._-]+@[0-9][0-9.]*' | sort -u); do
     package=${ref%@*}
     used=${ref##*@}
