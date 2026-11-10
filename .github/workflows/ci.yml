@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       # ShellCheck is preinstalled on the GitHub-hosted Ubuntu runners.
-      - run: shellcheck --version && shellcheck .githooks/pre-commit
+      - run: shellcheck --version && shellcheck .githooks/pre-commit .github/scripts/check-updates.sh
 
   json:
     name: Check JSON
