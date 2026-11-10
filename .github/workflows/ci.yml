@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: 24
       # Installed locally (not via npx) so stylelint can resolve the shared config.
-      - run: npm install --no-save --no-package-lock stylelint@16 stylelint-config-standard@39
+      - run: npm install --no-save --no-package-lock stylelint@18 stylelint-config-standard@41
       - run: npx stylelint style.css
 
   shell:
