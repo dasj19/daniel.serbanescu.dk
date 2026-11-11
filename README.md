@@ -15,6 +15,7 @@ A static site with no build step: plain HTML, CSS, a little JavaScript, SVG imag
 | `sound/` | Pronunciation recordings |
 | `favicons/`, `favicon.ico`, `site.webmanifest` | Icons and web app manifest; `maskable-*.png` are rendered from `maskable.svg` |
 | `robots.txt`, `sitemap.xml`, `humans.txt` | Crawler and author metadata |
+| `.well-known/security.txt` | Security contact (RFC 9116); points to the front page. Renew `Expires:` before it passes |
 
 ## Development
 
