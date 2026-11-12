@@ -55,7 +55,7 @@ When a commit includes site files, the hook sets the current date in three place
 | `humans.txt` | `Last update:` | `2026/11/08` |
 | `index.html` | Footer copyright year | `2026` in 2026, then a range such as `2026–2027` |
 
-- Commits that only touch repo files (`.githooks/`, `.github/`, `.vscode/`, `.editorconfig`, `.gitignore`, `.htmlvalidate.json`, `.stylelintrc.json`, `lighthouserc.json`, `README*`, `LICENSE*`) leave the dates alone.
+- Commits that only touch repo files (any top-level dotfile or dot-directory such as `.github/` or `.gitattributes`, plus `lighthouserc.json`, `README*` and `LICENSE*`) leave the dates alone.
 - If `index.html`, `sitemap.xml` or `humans.txt` has changes that are not staged, the commit is stopped, because the hook stages those files in full. Stage or stash the changes and commit again.
 - To commit without running the hook, use `git commit --no-verify`.
 - The hook is a POSIX `sh` script and works on Linux.
