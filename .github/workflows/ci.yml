@@ -5,7 +5,8 @@ on:
     branches: [main]
   pull_request:
   schedule:
-    # Weekly, to catch external links that break without any commit.
+    # Weekly, to catch external links that break and pinned versions that
+    # fall behind without any commit.
     - cron: "0 6 * * 1"
   workflow_dispatch:
 
@@ -63,7 +64,7 @@ jobs:
           print(f"{len(blocks)} JSON-LD block(s) OK")
 
   rendered-images:
-    name: Rendered PNGs are up to date
+    name: Check rendered PNGs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -104,6 +105,19 @@ jobs:
             --exclude "linkedin\.com"
             index.html humans.txt sitemap.xml robots.txt
           fail: true
+
+  updates:
+    name: Check for updates
+    # Only on the weekly run and manual runs, so a new upstream major release
+    # does not fail ordinary pushes and pull requests.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # gh and npm are preinstalled on the GitHub-hosted Ubuntu runners.
+      - run: .github/scripts/check-updates.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
 
   lighthouse:
     name: Lighthouse

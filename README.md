@@ -97,6 +97,7 @@ GitHub Actions runs on every push, on pull requests and weekly:
 - rendered PNGs (the social preview image and the maskable icons) must not be older than their SVG sources
 - link checking with lychee
 - Lighthouse scores: the median performance score over three runs must be at least 0.9, accessibility at least 0.95, best practices and SEO at least 0.9 (see `lighthouserc.json`)
+- on the weekly run and manual runs only: the action and npm versions pinned in the workflows must not be a major version behind (`.github/scripts/check-updates.sh`, which can also be run locally with `gh` and `npm`)
 
 ## Deployment
 
