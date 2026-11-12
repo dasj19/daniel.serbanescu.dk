@@ -84,6 +84,8 @@ for size in 192 512; do
 done
 ```
 
+CI fails if `maskable.svg` or `favicon.svg` has a newer commit than the maskable PNGs.
+
 ## Checks
 
 GitHub Actions runs on every push, on pull requests and weekly:
@@ -92,9 +94,9 @@ GitHub Actions runs on every push, on pull requests and weekly:
 - shell script linting of the git hooks and `.github/scripts/` with ShellCheck
 - CSS linting with stylelint (`stylelint-config-standard`, see `.stylelintrc.json`)
 - JSON checks: the web app manifest and the JSON-LD in `index.html` must parse
-- the social preview PNG must not be older than its SVG source
+- rendered PNGs (the social preview image and the maskable icons) must not be older than their SVG sources
 - link checking with lychee
-- Lighthouse scores (accessibility, best practices and SEO must pass)
+- Lighthouse scores: the median performance score over three runs must be at least 0.9, accessibility at least 0.95, best practices and SEO at least 0.9 (see `lighthouserc.json`)
 
 ## Deployment
 

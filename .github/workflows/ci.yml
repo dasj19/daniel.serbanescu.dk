@@ -62,21 +62,32 @@ jobs:
               json.loads(block)
           print(f"{len(blocks)} JSON-LD block(s) OK")
 
-  og-image:
-    name: Social preview image is up to date
+  rendered-images:
+    name: Rendered PNGs are up to date
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      # Fails when og-image.svg was changed in a commit that og-image.png has not caught up with.
+      # Fails when a source SVG was changed in a commit that a PNG rendered
+      # from it has not caught up with. Each line: PNG, then its sources.
       - run: |
-          svg=$(git log -1 --format=%H -- img/og-image.svg)
-          png=$(git log -1 --format=%H -- img/og-image.png)
-          if ! git merge-base --is-ancestor "$svg" "$png"; then
-            echo "::error file=img/og-image.png::img/og-image.svg changed in $svg after the PNG was last rendered. Re-render it (see README)."
-            exit 1
-          fi
+          status=0
+          while read -r png sources; do
+            png_commit=$(git log -1 --format=%H -- "$png")
+            for source in $sources; do
+              source_commit=$(git log -1 --format=%H -- "$source")
+              if ! git merge-base --is-ancestor "$source_commit" "$png_commit"; then
+                echo "::error file=$png::$source changed in $source_commit after $png was last rendered. Re-render it (see README)."
+                status=1
+              fi
+            done
+          done <<'EOF'
+          img/og-image.png              img/og-image.svg
+          favicons/maskable-192x192.png favicons/maskable.svg favicons/favicon.svg
+          favicons/maskable-512x512.png favicons/maskable.svg favicons/favicon.svg
+          EOF
+          exit "$status"
 
   links:
     name: Check links
