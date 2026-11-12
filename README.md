@@ -70,7 +70,7 @@ pngquant --quality=90-100 --speed 1 --strip --force --output img/og-image.png im
 oxipng -o max --strip safe --alpha img/og-image.png
 ```
 
-pngquant reduces the image to a 256-colour palette, which is visually identical here and cuts the file to about a third.
+pngquant reduces the image to a 256-color palette, which is visually identical here and cuts the file to about a third.
 
 CI fails if `og-image.svg` has a newer commit than `og-image.png`.
 

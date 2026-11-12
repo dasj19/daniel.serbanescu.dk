@@ -1,6 +1,6 @@
 # Release archives (`git archive`, and the "Source code" zip/tar.gz that GitHub
 # attaches to every release) contain only what the web server needs to serve,
-# plus the licence files.
+# plus the license files.
 # Everything below is repository tooling, documentation or source material.
 
 # Dotfiles and dot-directories (.github, .githooks, .vscode, .editorconfig, …)
