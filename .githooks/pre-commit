@@ -3,6 +3,8 @@
 #   index.html   JSON-LD "dateModified"  (ISO 8601 with offset)
 #   sitemap.xml  <lastmod>                (YYYY-MM-DD)
 #   humans.txt   Last update:             (YYYY/MM/DD)
+# and keep the copyright year in the index.html footer current:
+#   © 2026 in 2026, then © 2026–YYYY
 #
 # Enable once per clone with: git config core.hooksPath .githooks
 
@@ -28,6 +30,14 @@ now=$(date +%Y-%m-%dT%H:%M:%S%z | sed 's/\([0-9][0-9]\)$/:\1/')
 day=$(date +%Y-%m-%d)
 slash_day=$(date +%Y/%m/%d)
 
+first_year=2026
+year=$(date +%Y)
+if [ "$year" -gt "$first_year" ]; then
+    years="$first_year–$year"
+else
+    years=$first_year
+fi
+
 replace() {
     file=$1
     expression=$2
@@ -41,5 +51,6 @@ replace() {
 }
 
 replace index.html  "s|\"dateModified\": \"[^\"]*\"|\"dateModified\": \"$now\"|"
+replace index.html  "s|&copy; $first_year\(–[0-9]\{4\}\)\{0,1\} |\&copy; $years |"
 replace sitemap.xml "s|<lastmod>[^<]*</lastmod>|<lastmod>$day</lastmod>|"
 replace humans.txt  "s|Last update: [0-9/]*|Last update: $slash_day|"

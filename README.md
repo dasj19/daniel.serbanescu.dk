@@ -44,7 +44,7 @@ To turn them off again:
 git config --unset core.hooksPath
 ```
 
-#### `pre-commit`: last modified dates
+#### `pre-commit`: last modified dates and copyright year
 
 When a commit includes site files, the hook sets the current date in three places and adds those files to the same commit:
 
@@ -53,6 +53,7 @@ When a commit includes site files, the hook sets the current date in three place
 | `index.html` | JSON-LD `dateModified` | `2026-11-08T13:07:23+01:00` |
 | `sitemap.xml` | `<lastmod>` | `2026-11-08` |
 | `humans.txt` | `Last update:` | `2026/11/08` |
+| `index.html` | Footer copyright year | `2026` in 2026, then a range such as `2026–2027` |
 
 - Commits that only touch repo files (`.githooks/`, `.github/`, `.vscode/`, `.editorconfig`, `.gitignore`, `.htmlvalidate.json`, `.stylelintrc.json`, `lighthouserc.json`, `README*`, `LICENSE*`) leave the dates alone.
 - If `index.html`, `sitemap.xml` or `humans.txt` has changes that are not staged, the commit is stopped, because the hook stages those files in full. Stage or stash the changes and commit again.
