@@ -44,7 +44,7 @@ To turn them off again:
 git config --unset core.hooksPath
 ```
 
-#### `pre-commit`: last modified dates and copyright year
+#### `pre-commit`: last modified dates, copyright year and SRI hashes
 
 When a commit includes site files, the hook sets the current date in three places and adds those files to the same commit:
 
@@ -55,10 +55,13 @@ When a commit includes site files, the hook sets the current date in three place
 | `humans.txt` | `Last update:` | `2026/11/08` |
 | `index.html` | Footer copyright year | `2026` in 2026, then a range such as `2026–2027` |
 
+- It also runs `.github/scripts/update-sri.sh`, which sets the [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash (`integrity="sha384-…"`) on every local stylesheet and script in `index.html`. It hashes the staged version of each file, so the hash always matches what is committed. A new `<link rel="stylesheet">` or `<script src>` is picked up automatically, as long as the tag is on one line. The script needs GNU coreutils 9.2 or later and can also be run by hand.
 - Commits that only touch repo files (any top-level dotfile or dot-directory such as `.github/` or `.gitattributes`, plus `lighthouserc.json`, `eslint.config.mjs`, `README*` and `LICENSE*`) leave the dates alone.
 - If `index.html`, `sitemap.xml` or `humans.txt` has changes that are not staged, the commit is stopped, because the hook stages those files in full. Stage or stash the changes and commit again.
 - To commit without running the hook, use `git commit --no-verify`.
 - The hook is a POSIX `sh` script and works on Linux.
+
+The site is served with `Cache-Control: no-cache`, so browsers revalidate `index.html`, `style.css` and `script/audio.js` together and never pair a new hash with an old cached file. Keep it that way: with long-lived caching of unversioned file names, a stale stylesheet or script would fail its integrity check and be blocked.
 
 ### Social preview image
 
@@ -106,9 +109,10 @@ CI fails if a source SVG has a newer commit than any icon rendered from it.
 GitHub Actions runs on every push, on pull requests and weekly:
 
 - HTML validation with html-validate
-- shell script linting of the git hooks and `.github/scripts/` with ShellCheck
+- shell script linting of the git hook and `.github/scripts/` with ShellCheck
 - CSS linting with stylelint (`stylelint-config-standard`, see `.stylelintrc.json`)
 - JavaScript linting with ESLint (`@eslint/js` recommended rules, see `eslint.config.mjs`)
+- Subresource Integrity: the `integrity` hashes in `index.html` must match `style.css` and `script/audio.js` (`.github/scripts/update-sri.sh --check`)
 - JSON checks: the web app manifest and the JSON-LD in `index.html` must parse
 - rendered images (the social preview image and all icons) must not be older than their SVG sources
 - link checking with lychee

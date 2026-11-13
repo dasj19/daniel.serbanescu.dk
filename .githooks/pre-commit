@@ -3,8 +3,10 @@
 #   index.html   JSON-LD "dateModified"  (ISO 8601 with offset)
 #   sitemap.xml  <lastmod>                (YYYY-MM-DD)
 #   humans.txt   Last update:             (YYYY/MM/DD)
-# and keep the copyright year in the index.html footer current:
+# keep the copyright year in the index.html footer current:
 #   © 2026 in 2026, then © 2026–YYYY
+# and refresh the Subresource Integrity hashes of the stylesheets and scripts
+# that index.html loads (.github/scripts/update-sri.sh).
 #
 # Enable once per clone with: git config core.hooksPath .githooks
 
@@ -55,3 +57,7 @@ replace index.html  "s|\"dateModified\": \"[^\"]*\"|\"dateModified\": \"$now\"|"
 replace index.html  "s|&copy; $first_year\(–[0-9]\{4\}\)\{0,1\} |\&copy; $years |"
 replace sitemap.xml "s|<lastmod>[^<]*</lastmod>|<lastmod>$day</lastmod>|"
 replace humans.txt  "s|Last update: [0-9/]*|Last update: $slash_day|"
+
+# Hashes the staged stylesheets and scripts, so it sees what is being committed.
+.github/scripts/update-sri.sh
+git add -- index.html

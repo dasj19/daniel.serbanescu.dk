@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       # ShellCheck is preinstalled on the GitHub-hosted Ubuntu runners.
-      - run: shellcheck --version && shellcheck .githooks/pre-commit .github/scripts/check-updates.sh
+      - run: shellcheck --version && shellcheck .githooks/pre-commit .github/scripts/*.sh
 
   json:
     name: Check JSON
@@ -74,6 +74,15 @@ jobs:
           for block in blocks:
               json.loads(block)
           print(f"{len(blocks)} JSON-LD block(s) OK")
+
+  sri:
+    name: Check Subresource Integrity hashes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # Fails when a stylesheet or script changed without its integrity hash in
+      # index.html, e.g. after a commit made without the pre-commit hook.
+      - run: .github/scripts/update-sri.sh --check
 
   rendered-images:
     name: Check rendered PNGs
