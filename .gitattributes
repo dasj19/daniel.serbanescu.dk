@@ -11,6 +11,7 @@ README.md               export-ignore
 
 # Tooling configuration
 lighthouserc.json       export-ignore
+eslint.config.mjs       export-ignore
 
 # Sources that are rendered into served files
 img/og-image.svg        export-ignore

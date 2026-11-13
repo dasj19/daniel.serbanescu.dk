@@ -14,7 +14,7 @@ targets="index.html sitemap.xml humans.txt"
 
 # Files that are not part of the published site and should not bump the date:
 # every dotfile and dot-directory at the top level, plus a few named files.
-not_site='^(\.|lighthouserc\.json$|README|LICENSE)'
+not_site='^(\.|lighthouserc\.json$|eslint\.config\.mjs$|README|LICENSE)'
 
 site_changes=$(git diff --cached --name-only --diff-filter=ACMRD | grep -Ev "$not_site" || true)
 [ -n "$site_changes" ] || exit 0

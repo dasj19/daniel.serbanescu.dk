@@ -55,7 +55,7 @@ When a commit includes site files, the hook sets the current date in three place
 | `humans.txt` | `Last update:` | `2026/11/08` |
 | `index.html` | Footer copyright year | `2026` in 2026, then a range such as `2026–2027` |
 
-- Commits that only touch repo files (any top-level dotfile or dot-directory such as `.github/` or `.gitattributes`, plus `lighthouserc.json`, `README*` and `LICENSE*`) leave the dates alone.
+- Commits that only touch repo files (any top-level dotfile or dot-directory such as `.github/` or `.gitattributes`, plus `lighthouserc.json`, `eslint.config.mjs`, `README*` and `LICENSE*`) leave the dates alone.
 - If `index.html`, `sitemap.xml` or `humans.txt` has changes that are not staged, the commit is stopped, because the hook stages those files in full. Stage or stash the changes and commit again.
 - To commit without running the hook, use `git commit --no-verify`.
 - The hook is a POSIX `sh` script and works on Linux.
@@ -108,6 +108,7 @@ GitHub Actions runs on every push, on pull requests and weekly:
 - HTML validation with html-validate
 - shell script linting of the git hooks and `.github/scripts/` with ShellCheck
 - CSS linting with stylelint (`stylelint-config-standard`, see `.stylelintrc.json`)
+- JavaScript linting with ESLint (`@eslint/js` recommended rules, see `eslint.config.mjs`)
 - JSON checks: the web app manifest and the JSON-LD in `index.html` must parse
 - rendered images (the social preview image and all icons) must not be older than their SVG sources
 - link checking with lychee

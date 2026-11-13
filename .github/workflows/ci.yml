@@ -36,6 +36,18 @@ jobs:
       - run: npm install --no-save --no-package-lock stylelint@18 stylelint-config-standard@41
       - run: npx stylelint style.css
 
+  js:
+    name: Lint JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      # Installed locally (not via npx) so eslint.config.mjs can import @eslint/js.
+      - run: npm install --no-save --no-package-lock eslint@10 @eslint/js@10
+      - run: npx eslint script/
+
   shell:
     name: Lint shell scripts
     runs-on: ubuntu-latest
