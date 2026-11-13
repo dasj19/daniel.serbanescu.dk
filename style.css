@@ -57,7 +57,7 @@ p {
 
 .names dd {
     margin: 0;
-    color: #aaa;
+    color: #bbb;
 }
 
 .names .about {
@@ -103,12 +103,6 @@ p {
 .play img {
     width: auto;
     height: 18px;
-}
-
-.play:disabled {
-    opacity: 0.35;
-    filter: grayscale(1);
-    cursor: not-allowed;
 }
 
 .play::after {
