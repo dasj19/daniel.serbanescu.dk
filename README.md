@@ -13,7 +13,7 @@ A static site with no build step: plain HTML, CSS, a little JavaScript, SVG imag
 | `script/audio.js` | Plays pronunciations in place; without JavaScript the links open the MP3s |
 | `img/` | Images; `og-image.png` is rendered from `og-image.svg` |
 | `sound/` | Pronunciation recordings |
-| `favicons/`, `favicon.ico`, `site.webmanifest` | Icons and web app manifest; `maskable-*.png` are rendered from `maskable.svg` |
+| `favicons/`, `favicon.ico`, `site.webmanifest` | Icons and web app manifest; the PNG icons and `favicon.ico` are rendered from `favicon.svg` and `maskable.svg` |
 | `robots.txt`, `sitemap.xml`, `humans.txt` | Crawler and author metadata |
 
 ## Development
@@ -74,9 +74,24 @@ pngquant reduces the image to a 256-color palette, which is visually identical h
 
 CI fails if `og-image.svg` has a newer commit than `og-image.png`.
 
-### Maskable icons
+### Icons
 
-`favicons/maskable.svg` places `favicon.svg` inside the safe zone of a full-bleed background. After changing either, re-render:
+`favicons/favicon.svg` is the source of every icon. After changing it, re-render the PNG icons and `favicon.ico` (needs Inkscape and ImageMagick):
+
+```sh
+for size in 16 32; do
+    inkscape favicons/favicon.svg --export-type=png --export-width=$size --export-filename=favicons/favicon-${size}x${size}.png
+done
+inkscape favicons/favicon.svg --export-type=png --export-width=180 --export-filename=favicons/apple-touch-icon.png
+for size in 192 512; do
+    inkscape favicons/favicon.svg --export-type=png --export-width=$size --export-filename=favicons/android-chrome-${size}x${size}.png
+done
+inkscape favicons/favicon.svg --export-type=png --export-width=48 --export-filename=favicon-48.png
+magick favicons/favicon-16x16.png favicons/favicon-32x32.png favicon-48.png favicon.ico
+rm favicon-48.png
+```
+
+`favicons/maskable.svg` places `favicon.svg` inside the safe zone of a full-bleed background. After changing either, re-render the maskable icons:
 
 ```sh
 for size in 192 512; do
@@ -84,7 +99,7 @@ for size in 192 512; do
 done
 ```
 
-CI fails if `maskable.svg` or `favicon.svg` has a newer commit than the maskable PNGs.
+CI fails if a source SVG has a newer commit than any icon rendered from it.
 
 ## Checks
 
@@ -94,7 +109,7 @@ GitHub Actions runs on every push, on pull requests and weekly:
 - shell script linting of the git hooks and `.github/scripts/` with ShellCheck
 - CSS linting with stylelint (`stylelint-config-standard`, see `.stylelintrc.json`)
 - JSON checks: the web app manifest and the JSON-LD in `index.html` must parse
-- rendered PNGs (the social preview image and the maskable icons) must not be older than their SVG sources
+- rendered images (the social preview image and all icons) must not be older than their SVG sources
 - link checking with lychee
 - Lighthouse scores: the median performance score over three runs must be at least 0.9, accessibility at least 0.95, best practices and SEO at least 0.9 (see `lighthouserc.json`)
 - on the weekly run and manual runs only: the action and npm versions pinned in the workflows must not be a major version behind (`.github/scripts/check-updates.sh`, which can also be run locally with `gh` and `npm`)

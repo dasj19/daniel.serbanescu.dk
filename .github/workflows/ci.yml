@@ -84,9 +84,15 @@ jobs:
               fi
             done
           done <<'EOF'
-          img/og-image.png              img/og-image.svg
-          favicons/maskable-192x192.png favicons/maskable.svg favicons/favicon.svg
-          favicons/maskable-512x512.png favicons/maskable.svg favicons/favicon.svg
+          img/og-image.png                    img/og-image.svg
+          favicon.ico                         favicons/favicon.svg
+          favicons/favicon-16x16.png          favicons/favicon.svg
+          favicons/favicon-32x32.png          favicons/favicon.svg
+          favicons/apple-touch-icon.png       favicons/favicon.svg
+          favicons/android-chrome-192x192.png favicons/favicon.svg
+          favicons/android-chrome-512x512.png favicons/favicon.svg
+          favicons/maskable-192x192.png       favicons/maskable.svg favicons/favicon.svg
+          favicons/maskable-512x512.png       favicons/maskable.svg favicons/favicon.svg
           EOF
           exit "$status"
 
